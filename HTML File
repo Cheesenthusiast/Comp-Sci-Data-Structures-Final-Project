@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grub Order</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Section 1: Home -->
+<section id="home">
+  <h1>Hello, [username]</h1>
+  <div class="categories">
+    <button>Salads</button>
+    <button>Sandwiches & Wraps</button>
+    <button>Charcuterie & Platters</button>
+  </div>
+
+  <!-- NEW VIEW BAG BUTTON -->
+  <div class="view-bag-button">
+    <button onclick="showBag()">View Your Bag 🛍️</button>
+  </div>
+
+  <h2>Today's Special</h2>
+  <p><strong>Mexican Pasta Salad</strong> - Tossed in a flavorful roasted jalapeño ranch...</p>
+      </div>
+      <div class="grubs">
+        <h3>Other Grubs</h3>
+        <div class="food-item">
+          <p>Risotto</p>
+          <button onclick="addToBag('Risotto')">+</button>
+        </div>
+        <!-- Add other food items similarly -->
+      </div>
+    </section>
+
+    <!-- Section 2: Empty Bag -->
+    <section id="empty-bag" class="hidden">
+      <h1>Your Bag</h1>
+      <p>Uh oh! You have no grubs in your bag</p>
+      <button onclick="goToHome()">Order Now</button>
+    </section>
+
+    <!-- Section 3: Bag with Items -->
+    <section id="bag">
+      <h1>Your Bag</h1>
+      <div id="bag-items"></div>
+      <button onclick="submitOrder()">Submit Order</button>
+    </section>
+
+    <!-- Section 4: Order Submitted -->
+    <section id="order-submitted" class="hidden">
+      <h1>Order Submitted</h1>
+      <p>See you soon!</p>
+      <button onclick="goToHome()">Back to Home</button>
+    </section>
+
+    <!-- Section 5: Favorites -->
+    <section id="favorites">
+      <h1>Your Favorites</h1>
+      <ul>
+        <li>
+          <span>3-Bean Chili and Chips</span>
+          <button onclick="addToBag('3-Bean Chili and Chips')">Order now</button>
+          <div class="rating"></div>
+        </li>
+        <!-- Repeat for other favorite items -->
+      </ul>
+    </section>
+
+    <!-- Section 6: Review System -->
+    <section id="reviews">
+      <h1>Leave a Review</h1>
+      <select id="review-item">
+        <option value="Risotto">Risotto</option>
+        <!-- Add other options dynamically -->
+      </select>
+      <div class="stars">
+        <!-- Star rating system -->
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+      </div>
+      <textarea id="review-text" placeholder="Write your review..."></textarea>
+      <button onclick="submitReview()">Submit Review</button>
+    </section>
+  </div>
+</body>
+</html>
