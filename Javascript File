@@ -1,0 +1,130 @@
+function addToBag(item) {
+  const bagSection = document.getElementById('bag');
+  const bag = document.getElementById('bag-items');
+  const newItem = document.createElement('div');
+  newItem.textContent = item;
+  bag.appendChild(newItem);
+  document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+  bagSection.classList.remove('hidden');
+}
+
+function submitOrder() {
+  document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+  document.getElementById('order-submitted').classList.remove('hidden');
+}
+
+function goToHome() {
+  document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+  document.getElementById('home').classList.remove('hidden');
+}
+
+// Star Rating Logic
+const stars = document.querySelectorAll('.stars span');
+
+stars.forEach((star, index) => {
+  star.addEventListener('click', () => {
+    stars.forEach((s, i) => {
+      s.classList.toggle('selected', i <= index);
+    });
+  });
+});
+
+function submitReview() {
+  const item = document.getElementById('review-item').value;
+  const text = document.getElementById('review-text').value;
+  const stars = document.querySelectorAll('.stars .selected').length;
+
+  if (!text.trim()) {
+    alert('Please write a review before submitting.');
+    return;
+  }
+
+  console.log(`Review for ${item}: ${stars} stars - "${text}"`);
+  alert(`Thank you for your review of ${item}!`);
+  document.getElementById('review-text').value = '';
+  document.querySelectorAll('.stars span').forEach(s => s.classList.remove('selected'));
+}
+
+// Initialize view
+window.onload = () => {
+  document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+  document.getElementById('home').classList.remove('hidden');
+};
+
+let bag = {};
+
+function addToBag(itemName) {
+  if (bag[itemName]) {
+    bag[itemName].quantity++;
+  } else {
+    bag[itemName] = { quantity: 1, price: 5.00 }; // Example price
+  }
+  updateBagDisplay();
+}
+
+function removeFromBag(itemName) {
+  if (bag[itemName]) {
+    bag[itemName].quantity--;
+    if (bag[itemName].quantity <= 0) delete bag[itemName];
+  }
+  updateBagDisplay();
+}
+
+function updateBagDisplay() {
+  const bagSection = document.getElementById('bag');
+  const emptyBagSection = document.getElementById('empty-bag');
+  const bagItemsContainer = document.getElementById('bag-items');
+  const bagSummary = document.getElementById('bag-summary');
+
+  bagItemsContainer.innerHTML = '';
+  let total = 0;
+
+  if (Object.keys(bag).length === 0) {
+    bagSection.classList.add('hidden');
+    emptyBagSection.classList.remove('hidden');
+    return;
+  } else {
+    bagSection.classList.remove('hidden');
+    emptyBagSection.classList.add('hidden');
+  }
+
+  for (const item in bag) {
+    const entry = document.createElement('div');
+    const { quantity, price } = bag[item];
+    total += price * quantity;
+    entry.innerHTML = `
+      <strong>${item}</strong> - Quantity: ${quantity} 
+      <button onclick="addToBag('${item}')">+</button>
+      <button onclick="removeFromBag('${item}')">−</button>
+    `;
+    bagItemsContainer.appendChild(entry);
+  }
+
+  bagSummary.innerHTML = `<p>Total: $${total.toFixed(2)}</p>`;
+}
+
+function submitOrder() {
+  alert('Order submitted!');
+  bag = {};
+  updateBagDisplay();
+  document.getElementById('bag').classList.add('hidden');
+  document.getElementById('order-submitted').classList.remove('hidden');
+}
+
+function goToHome() {
+  document.getElementById('home').classList.remove('hidden');
+  document.getElementById('empty-bag').classList.add('hidden');
+  document.getElementById('bag').classList.add('hidden');
+  document.getElementById('order-submitted').classList.add('hidden');
+}
+
+function showBag() {
+  document.querySelectorAll("section").forEach(section => section.classList.add("hidden"));
+  if (Object.keys(bag).length === 0) {
+    document.getElementById("empty-bag").classList.remove("hidden");
+  } else {
+    updateBagDisplay(); // Ensure the bag shows the latest contents
+    document.getElementById("bag").classList.remove("hidden");
+  }
+}
+
