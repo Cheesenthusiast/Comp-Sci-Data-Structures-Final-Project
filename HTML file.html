@@ -8,33 +8,44 @@
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="container">
-    <!-- Section 1: Home -->
+
+<!-- Section 1: Home -->
 <section id="home">
   <h1>Hello, [username]</h1>
-  <div class="categories">
-    <button>Salads</button>
-    <button>Sandwiches & Wraps</button>
-    <button>Charcuterie & Platters</button>
+  <div class="home-categories">
+    <button>
+      <img src="resources/lettuce.png" alt="icon" style="width:60px; height:60px;" />
+      Salads
+    </button>
+    <button>
+      <img src="resources/lettuce.png" alt="icon" style="width:60px; height:60px;" />
+      Sandwiches & Wraps
+    </button>
+    <button>
+      <img src="resources/lettuce.png" alt="icon" style="width:60px; height:60px;" />
+      Charcuterie & Platters
+    </button>
   </div>
 
   <!-- NEW VIEW BAG BUTTON -->
-  <div class="view-bag-button">
+  <!-- i don't see this button anywhere in the screenshot so i'll skip it-->
+  <div class="view-bag-button"> 
     <button onclick="showBag()">View Your Bag 🛍️</button>
   </div>
 
   <h2>Today's Special</h2>
-  <p><strong>Mexican Pasta Salad</strong> - Tossed in a flavorful roasted jalapeño ranch...</p>
-      </div>
-      <div class="grubs">
-        <h3>Other Grubs</h3>
-        <div class="food-item">
-          <p>Risotto</p>
-          <button onclick="addToBag('Risotto')">+</button>
-        </div>
-        <!-- Add other food items similarly -->
-      </div>
-    </section>
+  <div class="home-special-container">
+    <img src="resources/salad.jpg">
+    <p><strong>Mexican Pasta Salad</strong> - Tossed in a flavorful roasted jalapeño ranch...</p>
+  </div>
+
+  <h3>Other Grubs</h3>
+  <!-- Add other food items similarly -->
+    <div class="home-grub-item">
+        Risotto
+        <button onclick="addToBag('Risotto')">+</button>
+    </div>
+</section>
 
     <!-- Section 2: Empty Bag -->
     <section id="empty-bag" class="hidden">
