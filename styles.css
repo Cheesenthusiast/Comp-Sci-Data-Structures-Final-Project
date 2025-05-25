@@ -2,6 +2,12 @@ body {
     background-color: #fffaeb;
 }
 
+hr {
+    background-color: #c2b49d;
+    height: 1px;
+    border: none;
+}
+
 #home h1 {
     color: black;
     font-family: cursive;
